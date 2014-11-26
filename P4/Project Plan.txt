@@ -1,0 +1,32 @@
+
+
+tasks
+	task id
+	completed boolean
+	detail
+	created on 
+	updated on
+	useridFK
+
+comments (cannot be edited) 
+	comment id
+	task id	fk
+	created on 
+	updated on
+	
+
+	
+pages 
+gettasks 
+posttasks
+search for task ? 
+create new task
+edit task
+
+User authentication so different users can have their own task lists.
+A page to display all incomplete tasks.
+A page to display all completed tasks.
+A page to display all tasks with incomplete tasks in bold and completed tasks greyed out.
+A page to add new tasks.
+A page to edit the content of existing tasks.
+
