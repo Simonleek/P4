@@ -189,7 +189,7 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'Pre'             	=> 'Paste\Pre',
 		'View'              => 'Illuminate\Support\Facades\View',
-
+		'Debugbar' 			=> 'Barryvdh\Debugbar\Facade'
 	),
 
 );

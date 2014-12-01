@@ -11,10 +11,36 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+/**
+* Index
+*/
+Route::get('/', 'IndexController@getIndex');
+
+/**
+* User Control
+*/
+Route::get('/signup', 'UserController@getSignup');
+Route::get('/login', 'UserController@getLogin' );
+Route::post('/signup', ['before' => 'csrf', 'uses' => 'UserController@postSignup'] );
+Route::post('/login', ['before' => 'csrf', 'uses' => 'UserController@postLogin'] );
+Route::get('/logout', ['before' => 'auth', 'uses' => 'UserController@getLogout'] );
+
+/**
+* Task
+* (Explicit Routing)
+*/
+//Route::get('/task/view', 'TaskController@getIndex1');
+Route::get('/task/view/{option}', 'TaskController@getIndex');
+//Route::get('/task', 'TaskController@getIndex');
+Route::get('/task/edit/{id}', 'TaskController@getEdit');
+Route::post('/task/edit', 'TaskController@postEdit');
+Route::get('/task/create', 'TaskController@getCreate');
+Route::post('/task/create', 'TaskController@postCreate');
+Route::get('/task/search', 'TaskController@getSearch');
+Route::post('/task/search', 'TaskController@postSearch');
+Route::post('/task/delete', 'TaskController@postDelete');
+
+
 Route::get('/get-environment',function() {
 
     echo "Environment: ".App::environment();

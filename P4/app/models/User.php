@@ -22,5 +22,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
+    public static function getIdNamePair() {
+
+		$users = Array();
+
+		$collection = User::all();
+
+		foreach($collection as $user) {
+			$users[$user->id] = $user->email;
+		}
+
+		return $users;
+	}
 
 }
