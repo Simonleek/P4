@@ -34,8 +34,10 @@ class TaskController extends \BaseController {
 	*/
 	public function getIndex($option) {
 		$tasks = Task::search($option);
+		$taskTypes = TaskType::getall();
 			return View::make('task_index')
-				->with('tasks', $tasks);
+				->with('tasks', $tasks)
+				->with('taskTypes', $taskTypes);
 	}
 
 
@@ -45,9 +47,9 @@ class TaskController extends \BaseController {
 	*/
 	public function getCreate() {
 
-		$users = User::getIdNamePair();
-
-    	return View::make('task_add')->with('users',$users);
+		$taskTypes = TaskType::getIdNamePair();
+		
+    	return View::make('task_add')->with('taskTypes',$taskTypes);
 
 	}
 
@@ -62,8 +64,7 @@ class TaskController extends \BaseController {
 		$task = new Task();
 
 		$task->fill(Input::all());
-		$task->save();
-
+		//$task->save();
 		# Magic: Eloquent
 		$task->save();
 
@@ -74,13 +75,15 @@ class TaskController extends \BaseController {
 
 		try {
 		    $task    = Task::findOrFail($id);
+		    $taskTypes = TaskType::getIdNamePair();
 		}
 		catch(exception $e) {
 		    return Redirect::to('/task/view/all')->with('flash_message', 'task not found');
 		}
 
     	return View::make('task_edit')
-    		->with('task', $task);
+    		->with('task', $task)
+    		->with('taskTypes', $taskTypes);
 
 	}
 	public function postEdit() {

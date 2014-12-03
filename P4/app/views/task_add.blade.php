@@ -15,7 +15,8 @@
 		{{ Form::text('name'); }}
 
 		{{ Form::hidden('user_id', Auth::user()->id) }}
-
+		{{ Form::label('taskType_id', 'TaskType') }}
+		{{ Form::select('taskType_id', $taskTypes); }}
 
 		{{ Form::label('detail','Task Detail') }}
 		{{ Form::textarea('detail'); }}

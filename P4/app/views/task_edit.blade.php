@@ -29,6 +29,10 @@
 		</div>
 
 		<div class='form-group'>
+			{{ Form::label('taskType_id', 'TaskType') }}
+			{{ Form::select('taskType_id', $taskTypes, $task->taskType_id); }}
+		</div>
+		<div class='form-group'>
 			{{ Form::label('detail','Detail') }}
 			{{ Form::textarea('detail',$task['detail']); }}
 		</div>

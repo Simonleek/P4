@@ -14,16 +14,31 @@
 		@foreach($tasks as $task)
 			<section class='task'>
 				<h2>{{ $task['name'] }}</h2>
+				<p>
+				{{$task['detail']}}
+				</p>
 				@if ($task['completed'] == 0)
-    			<p>Completed</p>
+    			<p>Completed - completed at {{$task['updated_at']}}</p>
 				@else
-    			<p>Incomplete</p>
+    			<p>Incomplete - created at {{$task['created_at']}}</p>
 				@endif
-				<br/>
-				{{$task['detail']}}<br/>
-				{{$task['created_at']}}<br/>
-				{{$task['updated_at']}}<br/>
-				<a href='/task/edit/{{$task['id']}}'>Edit</a>
+				@foreach ($taskTypes as $type)
+    				@if($task['taskType_id'] == $type['id'])
+    					<p>Task Type - {{ $type['name'] }}</p>
+    				@endif
+				@endforeach
+				@if ($task['completed'] == 1)
+    			<a href='/task/edit/{{$task['id']}}'>Edit</a>
+				@else
+    				<div>
+					{{---- DELETE -----}}
+					{{ Form::open(array('url' => '/task/delete')) }}
+					{{ Form::hidden('id',$task['id']); }}
+					<button onClick='parentNode.submit();return false;'>Delete</button>
+					{{ Form::close() }}
+					</div>
+				@endif
+				
 				<hr>
 			</section>
 		@endforeach

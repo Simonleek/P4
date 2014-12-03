@@ -10,9 +10,9 @@ class CreateUsersTable extends Migration {
 	 *
 	 * @return void
 	 */
-public function up() {
-
-Schema::create('users', function($table) {
+	public function up()
+	{
+		Schema::create('users', function($table) {
 
     $table->increments('id');
     $table->string('email')->unique();
@@ -21,7 +21,7 @@ Schema::create('users', function($table) {
     $table->timestamps();
 
 });
-}
+	}
 
 	/**
 	 * Reverse the migrations.
