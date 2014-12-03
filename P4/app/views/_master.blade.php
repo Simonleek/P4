@@ -19,6 +19,7 @@
 			<li><a href='/task/view/completed'>View completed Tasks</a></li>
 			<li><a href='/task/view/incomplete'>View incomplete Tasks</a></li>
 			<li><a href='/task/create'>+ Add Task</a></li>
+			<li><a href='/tasktype'>+Task Types</a></li>
 		@else
 			<li><a href='/signup'>Sign up</a> or <a href='/login'>Log in</a></li>
 		@endif
