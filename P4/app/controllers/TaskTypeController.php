@@ -41,6 +41,21 @@ class TaskTypeController extends \BaseController {
 	 */
 	public function store()
 	{
+		
+		$rules = array(
+			'name' => 'required|alpha_num|min:3|unique:tasktypes,name'
+		);
+
+		$validator = Validator::make(Input::all(), $rules);
+
+		if($validator->fails()) {
+
+			return Redirect::to('/tasktype')
+				->with('flash_message', 'Creation failed; task type is required to be uniqed with minium 3 characters.')
+				->withInput()
+				->withErrors($validator);
+		}
+
 		$tasktype = new TaskType;
 		$tasktype->name = Input::get('name');
 		$tasktype->save();
@@ -71,11 +86,16 @@ class TaskTypeController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+	
 				try {
 			$tasktype = TaskType::findOrFail($id);
 		}
 		catch(Exception $e) {
 			return Redirect::to('/tasktype_index')->with('flash_message', 'Task Type not found');
+		}
+		if (Task::taskTypeCountSearch($id) >0)
+		{
+			return Redirect::action('TaskTypeController@index')->with('flash_message','Task Type cannot be updated because it is in use by you or other user.');
 		}
 
 		# Pass with the $tag object so we can do model binding on the form
@@ -83,7 +103,9 @@ class TaskTypeController extends \BaseController {
 
 	}
 
-
+public function missingMethod ($parameters=array()) {
+return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$parameters[0]);
+}
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -98,12 +120,27 @@ class TaskTypeController extends \BaseController {
 		catch(Exception $e) {
 			return Redirect::to('/tasktype_index')->with('flash_message', 'Task Type not found');
 		}
-//need to check if it is in use by other ppl before editing 
+		if (Task::taskTypeCountSearch($id) >0)
+		{
+			return Redirect::action('TaskTypeController@index')->with('flash_message','Task Type cannot be updated because it is in use by you or other user.');
+		}
+				$rules = array(
+			'name' => 'required|alpha_num|min:3|unique:tasktypes,name'
+		);
+
+		$validator = Validator::make(Input::all(), $rules);
+
+		if($validator->fails()) {
+
+			return Redirect::to('/tasktype')
+				->with('flash_message', 'Creation failed; task type is required to be uniqed with minium 3 characters.')
+				->withInput()
+				->withErrors($validator);
+		}
 		$tasktype->name = Input::get('name');
 		$tasktype->save();
-
 		return Redirect::action('TaskTypeController@index')->with('flash_message','Your task type has been saved.');
-
+		
 	}
 
 
@@ -120,6 +157,10 @@ class TaskTypeController extends \BaseController {
 		}
 		catch(Exception $e) {
 			return Redirect::to('/tasktype_index')->with('flash_message', 'tasktype not found');
+		}
+		if (Task::taskTypeCountSearch($id) >0)
+		{
+			return Redirect::action('TaskTypeController@index')->with('flash_message','Task Type cannot be deleted because it is in use by you or other user.');
 		}
 		TaskType::destroy($id);
 

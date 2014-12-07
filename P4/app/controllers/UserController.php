@@ -62,7 +62,7 @@ class UserController extends BaseController {
 		# Log in
 		Auth::login($user);
 
-		return Redirect::to('/')->with('flash_message', 'Welcome to Foobooks!');
+		return Redirect::to('/')->with('flash_message', 'Welcome to Task!');
 
 	}
 
@@ -75,7 +75,9 @@ class UserController extends BaseController {
 		return View::make('login');
 
 	}
-
+public function missingMethod ($parameters=array()) {
+return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$parameters[0]);
+}
 	/**
 	* Process the login form
 	* @return View
@@ -85,7 +87,7 @@ class UserController extends BaseController {
 		$credentials = Input::only('email', 'password');
 
 		if (Auth::attempt($credentials, $remember = true)) {
-			return Redirect::intended('/')->with('flash_message', 'Welcome Back!');
+			return Redirect::intended('/task/view/all')->with('flash_message', 'Welcome Back!');
 		}
 		else {
 			return Redirect::to('/login')

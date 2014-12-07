@@ -11,17 +11,12 @@ class TaskType extends Eloquent {
         return $taskTypes;
     }
     public static function getIdNamePair() {
-
 		$taskTypes = Array();
-
 		$collection = TaskType::all();
-
 		foreach($collection as $taskType) {
 			$taskTypes[$taskType->id] = $taskType->name;
 		}
-
 		return $taskTypes;
 	}
-
 
 }

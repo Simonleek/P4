@@ -34,7 +34,6 @@ Route::get('/task/edit/{id}', 'TaskController@getEdit');
 Route::post('/task/edit', 'TaskController@postEdit');
 Route::get('/task/create', 'TaskController@getCreate');
 Route::post('/task/create', 'TaskController@postCreate');
-Route::get('/task/search', 'TaskController@getSearch');
 Route::post('/task/search', 'TaskController@postSearch');
 Route::post('/task/delete', 'TaskController@postDelete');
 /*

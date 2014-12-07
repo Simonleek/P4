@@ -15,19 +15,6 @@ class TaskController extends \BaseController {
 		$this->beforeFilter('auth');
 
 	}
-
-
-	/**
-	* Process the searchform
-	* @return View
-	*/
-	public function getSearch() {
-
-		return View::make('task_search');
-
-	}
-	
-
 	/**
 	* Display all tasks
 	* @return View
@@ -46,11 +33,8 @@ class TaskController extends \BaseController {
 	* @return View
 	*/
 	public function getCreate() {
-
 		$taskTypes = TaskType::getIdNamePair();
-		
     	return View::make('task_add')->with('taskTypes',$taskTypes);
-
 	}
 
 
@@ -59,7 +43,20 @@ class TaskController extends \BaseController {
 	* @return Redirect
 	*/
 	public function postCreate() {
+		$rules = array(
+			'name' => 'required|alpha_num|min:3',
+			'detail' => 'required|alpha_num|min:3'
+		);
 
+		$validator = Validator::make(Input::all(), $rules);
+
+		if($validator->fails()) {
+
+			return Redirect::to('/task/create')
+				->with('flash_message', 'Creation failed; task type is required to be uniqed with minium 3 characters.')
+				->withInput()
+				->withErrors($validator);
+		}
 		# Instantiate the book model
 		$task = new Task();
 
@@ -71,6 +68,9 @@ class TaskController extends \BaseController {
 		return Redirect::action('TaskController@getIndex')->with('flash_message','Your task has been added.');
 
 	}
+	public function missingMethod ($parameters=array()) {
+return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$parameters[0]);
+}
 	public function getEdit($id) {
 
 		try {
@@ -94,7 +94,20 @@ class TaskController extends \BaseController {
 	    catch(exception $e) {
 	        return Redirect::to('/task/view/all')->with('flash_message', 'task not found');
 	    }
+		$rules = array(
+			'name' => 'required|alpha_num|min:3',
+			'detail' => 'required|alpha_num|min:3'
+		);
 
+		$validator = Validator::make(Input::all(), $rules);
+
+		if($validator->fails()) {
+
+			return Redirect::to('/task/edit')
+				->with('flash_message', 'Creation failed; task type is required to be uniqed with minium 3 characters.')
+				->withInput()
+				->withErrors($validator);
+		}
 	    $task->fill(Input::all());
 	    $task->save();
 

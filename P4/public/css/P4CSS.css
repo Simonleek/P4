@@ -17,6 +17,16 @@ body
 	background: #387A9B;
 	color: #333;
 }
+.flash-message {
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	background-color:white;
+	color: red;
+	text-align:center;
+	padding:5px;
+}
 h1
 {
 	background: #D36832;

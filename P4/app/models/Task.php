@@ -15,12 +15,11 @@ class Task extends Eloquent {
 	public function user() {
         return $this->belongsTo('User');
     }
-    /*
-	public static function search() {
-       $tasks = Task::Where('user_id', '=', Auth::user()->id)
-            ->get();
-        return $tasks;
-    }*/
+	public static function taskTypeCountSearch($id) {
+		$taskCount = 0;
+		$taskCount= Task::where('id', '=', $id)->count();
+		return $taskCount;
+	}
     public static function search($query) {
 		$q = 0;
 		if ($query == "incomplete")
