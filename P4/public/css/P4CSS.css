@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* XKCD_Pwd v2.0 */
+
 #Header
 {
 	text-align: Center;
@@ -8,6 +8,10 @@
 	padding-top:0px;
 	padding-bottom:0px;
 	padding-left:0px;
+}
+title
+{
+display:block
 }
 body 
 {
@@ -19,7 +23,6 @@ body
 }
 .flash-message {
 	width:100%;
-	position:absolute;
 	top:0;
 	left:0;
 	background-color:white;
@@ -27,6 +30,17 @@ body
 	text-align:center;
 	padding:5px;
 }
+nav ul {
+	list-style-type:none;
+	padding:5px 0px 5px 0px;
+	text-align: right;
+}
+
+nav ul li {
+	display:inline;
+	margin-right:10px;
+}
+
 h1
 {
 	background: #D36832;
@@ -51,6 +65,7 @@ h4
 	text-align: left;
 	margin-top: 0;
 }
+
 #Container
 {
 	background-color:#C3C7B1;
@@ -70,6 +85,12 @@ h4
 	width:80%;
 	float: left;
 	margin: 12m 3%;
+}
+#error 
+{
+background-color:#C3C7B1;
+
+	color: red;
 }
 #footnote
 {

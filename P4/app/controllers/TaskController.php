@@ -103,7 +103,7 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 
 		if($validator->fails()) {
 
-			return Redirect::to('/task/edit')
+			return Redirect::to('/task/view/all')
 				->with('flash_message', 'Creation failed; task type is required to be uniqed with minium 3 characters.')
 				->withInput()
 				->withErrors($validator);

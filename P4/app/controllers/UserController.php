@@ -41,7 +41,7 @@ class UserController extends BaseController {
 		if($validator->fails()) {
 
 			return Redirect::to('/signup')
-				->with('flash_message', 'Sign up failed; please fix the errors listed below.')
+				->with('flash_message', 'Sign up failed; Please fix the errors listed below.')
 				->withInput()
 				->withErrors($validator);
 		}
@@ -62,7 +62,7 @@ class UserController extends BaseController {
 		# Log in
 		Auth::login($user);
 
-		return Redirect::to('/')->with('flash_message', 'Welcome to Task!');
+		return Redirect::to('/')->with('flash_message', 'Welcome to CSCE15 Task Manager!');
 
 	}
 
@@ -75,9 +75,9 @@ class UserController extends BaseController {
 		return View::make('login');
 
 	}
-public function missingMethod ($parameters=array()) {
-return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$parameters[0]);
-}
+	public function missingMethod ($parameters=array()) {
+		return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$parameters[0]);
+	}
 	/**
 	* Process the login form
 	* @return View
@@ -91,7 +91,7 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 		}
 		else {
 			return Redirect::to('/login')
-				->with('flash_message', 'Log in failed; please try again.')
+				->with('flash_message', 'Log in failed; Please try again.')
 				->withInput();
 		}
 
