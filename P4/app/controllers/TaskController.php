@@ -44,8 +44,7 @@ class TaskController extends \BaseController {
 	*/
 	public function postCreate() {
 		$rules = array(
-			'name' => 'required|alpha_num|min:3',
-			'detail' => 'required|alpha_num|min:3'
+			'name' => 'required'
 		);
 
 		$validator = Validator::make(Input::all(), $rules);
@@ -53,7 +52,7 @@ class TaskController extends \BaseController {
 		if($validator->fails()) {
 
 			return Redirect::to('/task/create')
-				->with('flash_message', 'Creation failed; task type is required to be uniqed with minium 3 characters.')
+				->with('flash_message', 'Creation failed; task name is required.')
 				->withInput()
 				->withErrors($validator);
 		}
@@ -95,8 +94,7 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 	        return Redirect::to('/task/view/all')->with('flash_message', 'task not found');
 	    }
 		$rules = array(
-			'name' => 'required|alpha_num|min:3',
-			'detail' => 'required|alpha_num|min:3'
+			'name' => 'required'
 		);
 
 		$validator = Validator::make(Input::all(), $rules);
@@ -104,7 +102,7 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 		if($validator->fails()) {
 
 			return Redirect::to('/task/view/all')
-				->with('flash_message', 'Creation failed; task type is required to be uniqed with minium 3 characters.')
+				->with('flash_message', 'Creation failed.')
 				->withInput()
 				->withErrors($validator);
 		}
