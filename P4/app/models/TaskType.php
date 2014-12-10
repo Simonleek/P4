@@ -2,7 +2,7 @@
 
 class TaskType extends Eloquent {
 
-	protected $table = 'TaskTypes';
+	protected $table = 'taskTypes';
 	public function task() {
         return $this->hasMany('Task');
     }
