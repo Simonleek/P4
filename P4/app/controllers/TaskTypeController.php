@@ -43,7 +43,7 @@ class TaskTypeController extends \BaseController {
 	{
 		
 		$rules = array(
-			'name' => 'required|alpha_num|min:3|unique:taskTypes,name'
+			'name' => 'required|unique:taskTypes,name'
 		);
 
 		$validator = Validator::make(Input::all(), $rules);
