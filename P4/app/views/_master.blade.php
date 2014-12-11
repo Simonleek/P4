@@ -26,7 +26,7 @@
 		</ul>
 	</nav>
 <body>
-	<form name="mainForm" id="mainForm" method="post" >
+	<!--<form name="mainForm" id="mainForm" method="post" >-->
 		<div id="Header">@yield('topic')</div>
 		<div id="Container"> 
 			<div id="Container2">
@@ -40,6 +40,6 @@
 			<div id="Footer"> <a href="http://p1.simonleetoronto.me">Copyright &copy; www.SimonLeeToronto.me 2014</a></div>
 		</div>
 	</div>	
-	</form>
+	<!--</form>-->
 </body>
 </html>

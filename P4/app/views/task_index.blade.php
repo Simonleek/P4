@@ -13,7 +13,6 @@
 		No results
 	@else
 		@foreach($tasks as $task)
-			<section class='task'>
 				<h4>{{ $task['name'] }}</h4> 
 				Task Type: (
 					@foreach ($taskTypes as $type)
@@ -42,7 +41,6 @@
 				
 				@endif
 				<hr>
-			</section>
 		@endforeach
 
 	@endif

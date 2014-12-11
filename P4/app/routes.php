@@ -32,9 +32,9 @@ Route::get('/logout', ['before' => 'auth', 'uses' => 'UserController@getLogout']
 Route::get('/task/view/{option}', 'TaskController@getIndex');
 Route::get('/task/edit/{id}', 'TaskController@getEdit');
 Route::post('/task/edit', 'TaskController@postEdit');
+Route::post('/task/edit/{id}', 'TaskController@postEdit');
 Route::get('/task/create', 'TaskController@getCreate');
 Route::post('/task/create', 'TaskController@postCreate');
-Route::post('/task/search', 'TaskController@postSearch');
 Route::post('/task/delete', 'TaskController@postDelete');
 /*
 *RESTFUL Task Type

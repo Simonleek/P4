@@ -17,7 +17,7 @@ class Task extends Eloquent {
     }
 	public static function taskTypeCountSearch($id) {
 		$taskCount = 0;
-		$taskCount= Task::where('id', '=', $id)->count();
+		$taskCount= Task::where('taskType_id', '=', $id)->count();
 		return $taskCount;
 	}
     public static function search($query) {

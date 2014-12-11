@@ -43,7 +43,7 @@ class TaskTypeController extends \BaseController {
 	{
 		
 		$rules = array(
-			'name' => 'required|alpha_num|min:3|unique:tasktypes,name'
+			'name' => 'required|alpha_num|min:3|unique:taskTypes,name'
 		);
 
 		$validator = Validator::make(Input::all(), $rules);
@@ -60,7 +60,7 @@ class TaskTypeController extends \BaseController {
 		$tasktype->name = Input::get('name');
 		$tasktype->save();
 
-		return Redirect::action('TaskTypeController@index')->with('flash_message','Your tag been added.');
+		return Redirect::action('TaskTypeController@index')->with('flash_message','Task type been added and it is available for all users.');
 	}
 
 
@@ -87,11 +87,11 @@ class TaskTypeController extends \BaseController {
 	public function edit($id)
 	{
 	
-				try {
+		try {
 			$tasktype = TaskType::findOrFail($id);
 		}
 		catch(Exception $e) {
-			return Redirect::to('/tasktype_index')->with('flash_message', 'Task Type not found');
+			return Redirect::to('/tasktype_index')->with('flash_message', 'Selected task type is no longer available');
 		}
 		if (Task::taskTypeCountSearch($id) >0)
 		{
@@ -103,9 +103,6 @@ class TaskTypeController extends \BaseController {
 
 	}
 
-public function missingMethod ($parameters=array()) {
-return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$parameters[0]);
-}
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -118,7 +115,7 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 			$tasktype = TaskType::findOrFail($id);
 		}
 		catch(Exception $e) {
-			return Redirect::to('/tasktype_index')->with('flash_message', 'Task Type not found');
+			return Redirect::to('/tasktype_index')->with('flash_message', 'Selected task type is no longer available');
 		}
 		if (Task::taskTypeCountSearch($id) >0)
 		{
@@ -132,7 +129,7 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 
 		if($validator->fails()) {
 
-			return Redirect::to('/tasktype')
+			return Redirect::to('/tasktype_index')
 				->with('flash_message', 'Creation failed; task type is required to be uniqed with minium 3 characters.')
 				->withInput()
 				->withErrors($validator);
@@ -152,11 +149,11 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 	 */
 	public function destroy($id)
 	{
-				try {
+		try {
 			$tasktype = TaskType::findOrFail($id);
 		}
 		catch(Exception $e) {
-			return Redirect::to('/tasktype_index')->with('flash_message', 'tasktype not found');
+			return Redirect::to('/tasktype_index')->with('flash_message', 'Selected task type is no longer available');
 		}
 		if (Task::taskTypeCountSearch($id) >0)
 		{
@@ -164,7 +161,7 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 		}
 		TaskType::destroy($id);
 
-		return Redirect::action('TaskTypeController@index')->with('flash_message','Your  task type has been deleted.');
+		return Redirect::action('TaskTypeController@index')->with('flash_message','Task type has been deleted.');
 
 	}
 

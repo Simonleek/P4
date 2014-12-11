@@ -77,7 +77,7 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 		    $taskTypes = TaskType::getIdNamePair();
 		}
 		catch(exception $e) {
-		    return Redirect::to('/task/view/all')->with('flash_message', 'task not found');
+		    return Redirect::to('/task/view/all')->with('flash_message', 'Selected task is no longer available');
 		}
 
     	return View::make('task_edit')
@@ -91,7 +91,7 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 	        $task = Task::findOrFail(Input::get('id'));
 	    }
 	    catch(exception $e) {
-	        return Redirect::to('/task/view/all')->with('flash_message', 'task not found');
+	        return Redirect::to('/task/view/all')->with('flash_message', 'Selected task is no longer available');
 	    }
 		$rules = array(
 			'name' => 'required'
@@ -105,10 +105,9 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 				->with('flash_message', 'Creation failed.')
 				->withInput()
 				->withErrors($validator);
-		}
+		} 
 	    $task->fill(Input::all());
 	    $task->save();
-
 	   	return Redirect::action('TaskController@getIndex')->with('flash_message','Your changes have been saved.');
 
 	}
@@ -120,12 +119,12 @@ return Redirect::to('/')->with('flash_message', 'Invalid Route Detected: '.$para
 	        $task = Task::findOrFail(Input::get('id'));
 	    }
 	    catch(exception $e) {
-	        return Redirect::to('/task/view/all')->with('flash_message', 'Could not delete task - not found.');
+	        return Redirect::to('/task/view/all')->with('flash_message', 'Could not delete task - Selected task is no longer available.');
 	    }
 
 	    Task::destroy(Input::get('id'));
 
-	    return Redirect::to('/task/view/all')->with('flash_message', 'task deleted.');
+	    return Redirect::to('/task/view/all')->with('flash_message', 'Selected task is deleted.');
 
 	}
 
