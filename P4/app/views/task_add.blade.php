@@ -27,7 +27,7 @@
     		</tr>
 		</table>
 		{{---- User_id is tracked through a hidden field here, task is owned by the signin account  --}}
-		{{ Form::hidden('user_id', Auth::user()->id) }}{{ Form::submit('Add'); }}
+		{{ Form::hidden('user_id', Auth::user()->id) }}{{ Form::submit('Add'); }}({{ link_to(URL::previous(), 'Cancel') }})
 		{{ Form::close() }}
 		{{-- to display all errors --}}
 		@foreach($errors->all() as $message)

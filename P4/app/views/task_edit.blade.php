@@ -24,10 +24,10 @@
 			<tr>
 			<td>{{ Form::label('taskType_id', 'TaskType') }}</td>
 			{{-- create a drop down box for user to select task type --}}
-			<td>{{ Form::select('taskType_id', $taskTypes, $task->taskType_id); }})</td>
+			<td>{{ Form::select('taskType_id', $taskTypes, $task->taskType_id); }}</td>
 			<tr>
 			<td>{{ Form::label('detail','Detail') }}</td>
-			<td>{{ Form::textarea('detail',$task['detail'],['size' => '15x3']); }} (not required, max 200 char</td>
+			<td>{{ Form::textarea('detail',$task['detail'],['size' => '15x3']); }} (not required, max 200 char)</td>
 			</tr>
 			<tr>
 			<td>{{ Form::submit('Save'); }}{{ link_to(URL::previous(), 'Cancel') }}</td>
