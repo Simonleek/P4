@@ -1,25 +1,72 @@
-## Laravel PHP Framework
+# Laravel Basics
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Live URL
+<http://p4.simonleetoronto.me>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+## Description
+This is the final project of Dynamic Web Applications class using Laravel.
+It is a Task Manager application that requires an account. It is included and not limited to the following functions:
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+- User authentication so different users can have their own task lists.
+- A page to display all incomplete tasks.
+- A page to display all completed tasks.
+- A page to display all tasks with incomplete tasks in bold and completed tasks greyed out.
+- A page to add new tasks.
+- A page to edit the content of existing tasks.
+- Whenever a task is displayed, it should list the date it was created and if complete, when it was completed.
+- Don't allow empty tasks, don't allow duplicate email sign-ups, etc
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Demo
 
-## Official Documentation
+[http://www.screencast.com/t/H70gZlehP2v](http://www.screencast.com/t/H70gZlehP2v)
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
 
-### Contributing To Laravel
+## Details for teaching team
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+Database P4TaskManager was created for this project with the following tables:
 
-### License
+users
+- id: unsigned int with auto_increment, primary key
+- email:  varchar(255) 
+- remember_token: varchar (100) 
+- password: varchar(100)
+- create_at: timestamp
+- updated_at: timestamp 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+taskTypes
+- id: unsigned int with auto_increment, primary key
+- create_at: timestamp
+- updated_at: timestamp 
+- name: name of the task type
+
+tasks (one user can have many tasks, each task has a task type)
+- id: unsigned int with auto_increment, primary key
+- create_at: timestamp
+- updated_at: timestamp 
+- name: varchar (225); This is the name of the task 
+- detail: varchar (225); Detail of the task
+- completed: tinyint (1); boolean field to track if the task is completed
+- user_id: unsigned int; foreign key of id field in the users table.  Identify which user owns this task. 
+- taskType_id: unsigned int; foreign key of id field in the taskTypes table.  Identify what type of a task is. 
+
+Relationships of these tables are defined in the following PHP classes:
+- User.php
+- TaskType.php: includes function to get all task and return of name and id pair
+- Task.php: definition of Task and task search function
+
+There are 4 controllers used in this project:
+- indexController.php: handles the display of the index view
+- TaskType.php :handles routes of index, create, store, show, edit, update and destroy functions of the task type in a Restful fashion
+- UserController.php: handles getSignUp, postSignUp, getLogin, postLogin, and getLogout in any Explicit Routing fashion
+- TaskController.php: handles explicit routing of all each function of CRUD of task 
+
+Filters
+- Authentication filter 
+- CSRF Protection Filter
+
+
+## Outside code
+The following external packages are used
+
+[https://packagist.org/packages/badcow/lorem-ipsum](https://packagist.org/packages/badcow/lorem-ipsum)  - This package is used to generate random paragraphs 
+[https://packagist.org/packages/fzaninotto/faker](https://packagist.org/packages/fzaninotto/faker) - This package is used to generate random users
