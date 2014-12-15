@@ -30,6 +30,14 @@ body
 	text-align:center;
 	padding:5px;
 }
+.completed
+{ 
+	color: grey;
+}
+.incomplete
+{
+	color: black;
+}
 nav ul {
 	list-style-type:none;
 	padding:5px 0px 5px 0px;

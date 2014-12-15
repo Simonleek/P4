@@ -12,7 +12,15 @@
 		No results {{---- If this is no task for this user, display no results.  --}}
 	@else
 		@foreach($tasks as $task)  {{---- loop through each task in the tasks collection --}}
-				<h4>{{ $task['name'] }}</h4>  {{---- Somehow, I can't get eager loading to work. So I just loop through the type array --}}
+				@if ($task['completed'] == 1)
+				<div class='incomplete'>
+    				<h4>{{ $task['name'] }}</h4>
+				@else
+				<div class='completed'>
+					<p>{{ $task['name'] }}</p>
+				@endif
+				  
+				{{---- Somehow, I can't get eager loading to work. So I just loop through the type array --}}
 				Task Type: (
 					@foreach ($taskTypes as $type)
     					@if($task['taskType_id'] == $type['id'])
@@ -41,6 +49,7 @@
 				
 				@endif
 				<hr>
+				</div>
 		@endforeach
 
 	@endif
