@@ -1,4 +1,4 @@
-# Laravel Basics
+# Laravel Final Assignment
 
 ## Live URL
 <http://p4.simonleetoronto.me>
