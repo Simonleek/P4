@@ -66,7 +66,5 @@ Filters
 
 
 ## Outside code
-The following external packages are used
-
-[https://packagist.org/packages/badcow/lorem-ipsum](https://packagist.org/packages/badcow/lorem-ipsum)  - This package is used to generate random paragraphs 
-[https://packagist.org/packages/fzaninotto/faker](https://packagist.org/packages/fzaninotto/faker) - This package is used to generate random users
+- no outside code was used.  
+- Some code referenced to the CSCE15 Susan's Foo book example 
