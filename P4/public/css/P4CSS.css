@@ -32,11 +32,11 @@ body
 }
 .completed
 { 
-	color: grey;
+	color: #B0B0B0;
 }
 .incomplete
 {
-	color: black;
+	color: #000000;
 }
 nav ul {
 	list-style-type:none;
