@@ -1,5 +1,7 @@
 @extends('_master')
 
+{{------- This is the index page of Assignment 4.  It display a few business rules of this application ------}}
+
 @section('title')
 	Welcome to Task Manager
 @stop

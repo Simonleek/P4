@@ -1,5 +1,14 @@
 <?php
-
+/* 
+ * RESTFUL routing of the task type, detail is defined in this controller (system generated class)
+ * Route::get('/tasktype', 'tasktypeController@index');
+ * Route::get('/tasktype/create', 'tasktypeController@create');
+ * Route::post('/tasktype', 'tasktypeController@store');
+ * Route::get('/tasktype/{tasktype_id}', 'tasktypeController@show');
+ * Route::get('/tasktype/{tasktype_id}/edit', 'tasktypeController@edit');
+ * Route::put('/tasktype/{tasktype_id}', 'tasktypeController@update');
+ * Route::delete('/tasktype/{tasktype_id}', 'tasktypeController@destroy');
+*/ 
 class TaskTypeController extends \BaseController {
 	public function __construct() {
 
@@ -43,15 +52,15 @@ class TaskTypeController extends \BaseController {
 	{
 		
 		$rules = array(
-			'name' => 'required|unique:taskTypes,name'
+			'name' => 'required|min:5|max:50|unique:taskTypes,name'
 		);
 
 		$validator = Validator::make(Input::all(), $rules);
 
 		if($validator->fails()) {
 
-			return Redirect::to('/tasktype')
-				->with('flash_message', 'Creation failed; task type is required to be uniqed with minium 3 characters.')
+			return Redirect::to('/tasktype/create')
+				->with('flash_message', 'Creation failed')
 				->withInput()
 				->withErrors($validator);
 		}
@@ -72,7 +81,7 @@ class TaskTypeController extends \BaseController {
 	 */
 	public function show($id)
 	{
-				$tasktypes = TaskType::find($id);
+		$tasktypes = TaskType::find($id);
 		return View::make('tasktype_index')->with('tasktypes',$tasktypes);
 
 	}
@@ -98,7 +107,6 @@ class TaskTypeController extends \BaseController {
 			return Redirect::action('TaskTypeController@index')->with('flash_message','Task Type cannot be updated because it is in use by you or other user.');
 		}
 
-		# Pass with the $tag object so we can do model binding on the form
 		return View::make('tasktype_edit')->with('tasktype', $tasktype);
 
 	}
@@ -122,15 +130,15 @@ class TaskTypeController extends \BaseController {
 			return Redirect::action('TaskTypeController@index')->with('flash_message','Task Type cannot be updated because it is in use by you or other user.');
 		}
 				$rules = array(
-			'name' => 'required|alpha_num|min:3|unique:tasktypes,name'
+			'name' => 'required|alpha_num|min:5|max:50|unique:tasktypes,name'
 		);
 
 		$validator = Validator::make(Input::all(), $rules);
 
 		if($validator->fails()) {
-
-			return Redirect::to('/tasktype_index')
-				->with('flash_message', 'Creation failed; task type is required to be uniqed with minium 3 characters.')
+			$id = Input::get('id');
+			return Redirect::to('/tasktype/'.$id.'/edit/')
+				->with('flash_message', 'Creation failed.')
 				->withInput()
 				->withErrors($validator);
 		}
