@@ -9,7 +9,7 @@
 			{{---- The only editable element in task type is name --}}
 			{{ Form::label('name','Task Type: ') }}
 			{{ Form::text('name') }} (5-50 char)
-	{{ Form::submit('Add Task Type') }}({{ link_to(URL::previous(), 'Cancel') }})
+	{{ Form::submit('Add Task Type') }}&nbsp;{{ HTML::link('/tasktype', '(Cancel)') }}
 	{{ Form::close() }} 
 	{{---- To display the possible errors  --}}
 	@foreach($errors->all() as $message)

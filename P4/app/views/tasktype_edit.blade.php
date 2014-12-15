@@ -14,7 +14,7 @@
 	{{ Form::close() }}
 	{{---- This is the delete button of task type -----}}
 	{{ Form::open(['method' => 'DELETE', 'action' => ['TaskTypeController@destroy', $tasktype->id]]) }}
-		<a href='javascript:void(0)' onClick='parentNode.submit();return false;'>(Delete)</a> &nbsp;{{ link_to(URL::previous(), '(Cancel)') }}
+		<a href='javascript:void(0)' onClick='parentNode.submit();return false;'>(Delete)</a> &nbsp;{{ HTML::link('/tasktype', '(Cancel)') }}
 	{{ Form::close() }}
 		@foreach($errors->all() as $message)
 			<div >* {{ $message }}</div>

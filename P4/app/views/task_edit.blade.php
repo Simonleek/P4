@@ -30,7 +30,7 @@
 			<td>{{ Form::textarea('detail',$task['detail'],['size' => '15x3']); }} (not required, max 200 char)</td>
 			</tr>
 			<tr>
-			<td>{{ Form::submit('Save'); }}{{ link_to(URL::previous(), 'Cancel') }}</td>
+			<td>{{ Form::submit('Save'); }}&nbsp;{{ HTML::link('/task/view/all', '(Cancel)') }}
 			<td>		
 				@foreach($errors->all() as $message)
 				<div >* {{ $message }}</div>
