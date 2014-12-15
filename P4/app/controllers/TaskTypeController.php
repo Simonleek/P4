@@ -130,7 +130,7 @@ class TaskTypeController extends \BaseController {
 			return Redirect::action('TaskTypeController@index')->with('flash_message','Task Type cannot be updated because it is in use by you or other user.');
 		}
 				$rules = array(
-			'name' => 'required|alpha_num|min:5|max:50|unique:tasktypes,name'
+				'name' => 'required|alpha_num|min:5|max:50|unique:tasktypes,name'
 		);
 
 		$validator = Validator::make(Input::all(), $rules);
@@ -138,8 +138,9 @@ class TaskTypeController extends \BaseController {
 		if($validator->fails()) {
 			$id = Input::get('id');
 			return Redirect::to('/tasktype/'.$id.'/edit/')
-				->with('flash_message', 'Creation failed.')
+				->with('flash_message', 'Update failed.')
 				->withInput()
+				->with('tasktype', $tasktype)
 				->withErrors($validator);
 		}
 		$tasktype->name = Input::get('name');
