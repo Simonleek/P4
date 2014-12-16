@@ -24,6 +24,11 @@ class TaskController extends \BaseController {
 	* @return View
 	*/
 	public function getCreate() {
+		if(TaskType::countAll() <= 0)
+		{
+			return Redirect::to('/tasktype/create')
+				->with('flash_message', 'There is no task type.  Please create a new task type prior to creating any task');
+		}
 		$taskTypes = TaskType::getIdNamePair();
     	return View::make('task_add')->with('taskTypes',$taskTypes);
 	}
@@ -35,7 +40,7 @@ class TaskController extends \BaseController {
 		# name is required, and betweenn 5 to 50 characters 
 		# detail is not required but has a 200 characters maxium 
 		$rules = array(
-			'name' => 'required|min:5|max:50',
+			'name' => 'required||min:5|max:50',
 			'detail' => 'max:200'
 		);
 		$validator = Validator::make(Input::all(), $rules);

@@ -130,7 +130,8 @@ class TaskTypeController extends \BaseController {
 			return Redirect::action('TaskTypeController@index')->with('flash_message','Task Type cannot be updated because it is in use by you or other user.');
 		}
 				$rules = array(
-				'name' => 'required|alpha_num|min:5|max:50|unique:taskTypes,name'
+				'name' => 'required|min:5|max:50|unique:taskTypes,name,'.$tasktype->id
+				# the rule above allow user to click update without changing the name 
 		);
 
 		$validator = Validator::make(Input::all(), $rules);

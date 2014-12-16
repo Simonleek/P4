@@ -13,6 +13,10 @@ class TaskType extends Eloquent {
        $taskTypes = TaskType::all();
         return $taskTypes;
     }
+    public static function countAll() {
+       $count = TaskType::count();
+        return $count;
+    }
     # get the id and task type name
     public static function getIdNamePair() {
 		$taskTypes = Array();

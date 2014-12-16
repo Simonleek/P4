@@ -20,6 +20,7 @@ class UserController extends BaseController {
 	* @return Redirect
 	*/
 	public function postSignup() {
+		# i have used the rule min and max becasue i don't like the error message of digits_between:min,max rule and dont' want to change... 
 			$rules = array(
 			'email' => 'required|min:5|max:50|email|unique:users,email',
 			'password' => 'required|min:6|max:50'
