@@ -2,6 +2,9 @@
 
 ## Live URL
 <http://p4.simonleetoronto.me>
+Test account used
+- simon@test1.com password:11111111
+- simon@test2.com password:11111111
 
 ## Description
 This is the final project of Dynamic Web Applications class using Laravel.
@@ -18,7 +21,7 @@ It is a Task Manager application that requires an account. It is included and no
 
 ## Demo
 
-[http://www.screencast.com/t/H70gZlehP2v](http://www.screencast.com/t/H70gZlehP2v)
+[http://www.screencast.com/t/2CCx1Xzk](http://www.screencast.com/t/2CCx1Xzk)
 
 
 ## Details for teaching team
