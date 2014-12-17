@@ -1,7 +1,11 @@
-# Laravel Basics
+# Laravel Final Assignment
 
 ## Live URL
 <http://p4.simonleetoronto.me>
+
+Test account used
+- simon@test1.com password:11111111
+- simon@test2.com password:11111111
 
 ## Description
 This is the final project of Dynamic Web Applications class using Laravel.
@@ -18,7 +22,7 @@ It is a Task Manager application that requires an account. It is included and no
 
 ## Demo
 
-[http://www.screencast.com/t/H70gZlehP2v](http://www.screencast.com/t/H70gZlehP2v)
+[http://www.screencast.com/t/2CCx1Xzk](http://www.screencast.com/t/2CCx1Xzk)
 
 
 ## Details for teaching team
@@ -66,7 +70,5 @@ Filters
 
 
 ## Outside code
-The following external packages are used
-
-[https://packagist.org/packages/badcow/lorem-ipsum](https://packagist.org/packages/badcow/lorem-ipsum)  - This package is used to generate random paragraphs 
-[https://packagist.org/packages/fzaninotto/faker](https://packagist.org/packages/fzaninotto/faker) - This package is used to generate random users
+- no outside code was used.  
+- Some code referenced to the CSCE15 Susan's Foo book example 
